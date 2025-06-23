@@ -1,0 +1,9 @@
+/**
+ * 业务错误码
+ */
+export enum BIZ_CODE {
+	SUCCESS = 0, // 成功
+	USER_NOT_FOUND = 1001,
+	INSUFFICIENT_BALANCE = 1002,
+	INVALID_PARAMS = 4000,
+}

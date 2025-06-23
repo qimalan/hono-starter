@@ -1,0 +1,40 @@
+{
+	"compilerOptions": {
+		/* 基本选项 */
+		"target": "ESNext",
+		"lib": ["ESNext"],
+		"jsx": "react-jsx",
+		"jsxImportSource": "hono/jsx",
+
+		/* 模块解析 */
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		},
+		"resolveJsonModule": true,
+		"allowImportingTsExtensions": true,
+
+		/* 与 Bun/现代工具链的互操作性 */
+		"esModuleInterop": true,
+		"verbatimModuleSyntax": true, // TypeScript 5.0+ 推荐
+		"isolatedModules": true,
+
+		/* 严格性与代码质量 */
+		"strict": true,
+		"skipLibCheck": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"forceConsistentCasingInFileNames": true,
+
+		/* 输出 */
+		"outDir": "./dist",
+		"noEmit": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
+}

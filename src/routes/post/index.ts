@@ -1,10 +1,10 @@
-import { success } from "@/common/helpers/success";
+import { success } from "@/common/helpers/response/success";
 import { db } from "@/db";
 import { postTable } from "@/db/schema";
 import { postFilters, postSortableColumns } from "./config";
 
-import { bizError } from "@/common/helpers/bizError";
 import { paginate } from "@/common/helpers/paginate";
+import { bizError } from "@/common/helpers/response/bizError";
 import { BIZ_CODE } from "@/constants/code";
 import type { OpenAPIHono } from "@hono/zod-openapi";
 import { count, eq } from "drizzle-orm";
@@ -31,8 +31,6 @@ export const addPostRoutes = (app: OpenAPIHono) => {
 				filters,
 				filterConfig: postFilters,
 			});
-			// throw new HTTPException(403,{message:"123124"})
-			// return bizError(c,BIZ_CODE.USER_NOT_FOUND,"bucunzai")
 			return success(c, result);
 		})
 		.openapi(detailPost, async (c) => {

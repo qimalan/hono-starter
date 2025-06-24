@@ -1,8 +1,10 @@
-import type { FilterConfig } from "@/common/helpers/buildQueryFilter";
+import type { FilterConfig } from "@/common/helpers/querybuilder/buildQueryFilter";
 import { postTable } from "@/db/schema";
 import { arrayContains, eq } from "drizzle-orm";
 import type { PgColumn } from "drizzle-orm/pg-core";
 import type { PostFilter } from "./schema";
+
+//定义支持排序和过滤的选项
 
 export const postSortableColumns: Record<string, PgColumn> = {
 	createdAt: postTable.createdAt,

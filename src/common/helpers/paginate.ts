@@ -1,6 +1,9 @@
 import type { PgColumn, PgSelect } from "drizzle-orm/pg-core";
-import { type SortParam, applySorting } from "./applyQuerySorting";
-import { type FilterConfig, buildFilter } from "./buildQueryFilter";
+import { type SortParam, applySorting } from "./querybuilder/applyQuerySorting";
+import {
+	type FilterConfig,
+	buildFilter,
+} from "./querybuilder/buildQueryFilter";
 
 interface PaginateOptions<
 	S extends Record<string, PgColumn>,

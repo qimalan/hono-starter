@@ -5,8 +5,6 @@ import { cors } from "hono/cors";
 import { csrf } from "hono/csrf";
 import { HTTPException } from "hono/http-exception";
 import type { ContentfulStatusCode } from "hono/utils/http-status";
-import { db } from "./db";
-import { usersTable } from "./db/schema";
 import { addPostRoutes } from "./routes/post";
 
 const app = new OpenAPIHono({
@@ -28,7 +26,7 @@ const app = new OpenAPIHono({
 
 app
 	.use(csrf())
-	.use("*", cors())
+	.use(cors())
 	.onError((err, c) => {
 		let statusCode: ContentfulStatusCode = 500;
 		let message = "Internal Server Error";
@@ -50,16 +48,10 @@ app
 			statusCode,
 		);
 	})
-	.notFound((c) => c.json({ message: "Not Found", code: 404, data: null }, 404))
-	.post("/test", async (c) => {
-		const body = await c.req.json();
-		console.log("test body", body);
-		const user = await db.insert(usersTable).values(body).returning();
-		console.log("user", user);
-		return c.json(user);
-	});
+	.notFound((c) =>
+		c.json({ message: "Not Found", code: 404, data: null }, 404),
+	);
 
-// app.route("/post", postRoute);
 addPostRoutes(app);
 
 // 生成 OpenAPI 文档

@@ -1,5 +1,5 @@
-import { createRequestBodySchema } from "@/common/helpers/createRequestBodySchema";
-import { createSuccessResponse } from "@/common/helpers/createSuccessResponse";
+import { createRequestBodySchema } from "@/common/helpers/openapi/createRequestBodySchema";
+import { createSuccessResponse } from "@/common/helpers/openapi/createSuccessResponse";
 import { PaginateResponseSchema } from "@/common/schema/PaginateResponseSchema";
 import { createRoute, z } from "@hono/zod-openapi";
 import {
@@ -9,6 +9,8 @@ import {
 	PostUpdateSchema,
 	QueryPostListSchema,
 } from "./schema";
+
+//路由定义+及参数验证
 
 const PostPaginateResponseSchema = PaginateResponseSchema.extend({
 	items: z.array(PostSelectSchema),

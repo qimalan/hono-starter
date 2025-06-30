@@ -1,0 +1,35 @@
+# Git 在检出时将文本文件自动转换为本地换行符，
+# 但在提交到仓库时，强制将它们全部转换为 LF (\n)。
+# 这是最稳妥的跨平台策略。
+* text=auto eol=lf
+
+# 明确将以下常见文件类型标记为文本，并强制使用 LF 换行符
+# 这为 `* text=auto eol=lf` 提供了更强的保证
+*.ts text
+*.tsx text
+*.js text
+*.jsx text
+*.json text
+*.css text
+*.scss text
+*.html text
+*.md text
+*.yml text
+*.yaml text
+*.gitignore text
+*.gitattributes text
+
+# 对于明确需要保留 CRLF 的文件（非常罕见，例如某些 Windows 批处理脚本）
+# *.bat text eol=crlf
+
+# 明确标记以下文件为二进制文件，Git 不应尝试修改它们
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.eot binary
+*.ttf binary
+*.woff binary
+*.woff2 binary

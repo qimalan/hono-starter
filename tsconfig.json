@@ -9,9 +9,9 @@
 		/* 模块解析 */
 		"module": "ESNext",
 		"moduleResolution": "bundler",
-		"baseUrl": ".",
+		"baseUrl": "./",
 		"paths": {
-			"@/*": ["src/*"]
+			"@/*": ["./src/*"]
 		},
 		"resolveJsonModule": true,
 		"allowImportingTsExtensions": true,

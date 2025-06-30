@@ -1,82 +1,84 @@
-import { createRequestBodySchema } from "@/common/helpers/openapi/createRequestBodySchema";
-import { createSuccessResponse } from "@/common/helpers/openapi/createSuccessResponse";
-import { PaginateResponseSchema } from "@/common/schema/PaginateResponseSchema";
+import { createOpenApiResponse } from "@/lib/openapi/create-openapi-response";
 import { createRoute, z } from "@hono/zod-openapi";
 import {
+	listSchema,
 	PostInsertSchema,
-	PostParamSchema,
 	PostSelectSchema,
 	PostUpdateSchema,
-	QueryPostListSchema,
 } from "./schema";
-
-//路由定义+及参数验证
-
-const PostPaginateResponseSchema = PaginateResponseSchema.extend({
-	items: z.array(PostSelectSchema),
-});
+import { IdParamsSchema, PaginateResponseSchema } from "@/lib/schema";
+import { jsonContentRequired } from "@/lib/openapi/json-content-required";
 
 const tags = ["文章操作"];
 
-const listPost = createRoute({
+export const list = createRoute({
 	method: "get",
 	path: "/post",
 	request: {
-		query: QueryPostListSchema,
+		query: listSchema,
 	},
 	responses: {
-		...createSuccessResponse("文章分页查询", PostPaginateResponseSchema),
+		...createOpenApiResponse(
+			"文章分页查询",
+			PaginateResponseSchema.extend({
+				items: z.array(PostSelectSchema),
+			}),
+		),
 	},
 	tags,
 });
 
-const detailPost = createRoute({
+export const getOne = createRoute({
 	method: "get",
 	path: "/post/{id}",
 	request: {
-		params: PostParamSchema,
+		params: IdParamsSchema,
 	},
 	responses: {
-		...createSuccessResponse("文章详情查询", PostSelectSchema),
+		...createOpenApiResponse("文章详情查询", PostSelectSchema),
 	},
 	tags,
 });
 
-const createPost = createRoute({
+export const create = createRoute({
 	method: "post",
 	path: "/post",
 	request: {
-		body: createRequestBodySchema(PostInsertSchema),
+		body: jsonContentRequired(PostInsertSchema),
 	},
 	responses: {
-		...createSuccessResponse("创建文章", PostSelectSchema),
+		...createOpenApiResponse("创建文章", PostSelectSchema),
 	},
 	tags,
 });
 
-const deletePost = createRoute({
+export const remove = createRoute({
 	method: "delete",
 	path: "/post/{id}",
 	request: {
-		params: PostParamSchema,
+		params: IdParamsSchema,
 	},
 	responses: {
-		...createSuccessResponse("删除文章", PostSelectSchema),
+		...createOpenApiResponse("删除文章", PostSelectSchema),
 	},
 	tags,
 });
 
-const updatePost = createRoute({
+export const update = createRoute({
 	method: "patch",
 	path: "/post/{id}",
 	request: {
-		params: PostParamSchema,
-		body: createRequestBodySchema(PostUpdateSchema),
+		params: IdParamsSchema,
+		body: jsonContentRequired(PostUpdateSchema),
 	},
 	responses: {
-		...createSuccessResponse("更新文章", PostSelectSchema),
+		...createOpenApiResponse("更新文章", PostSelectSchema),
 	},
 	tags,
 });
 
-export { listPost, deletePost, detailPost, createPost, updatePost };
+export type ListRoute = typeof list;
+export type CreateRoute = typeof create;
+export type GetOneRoute = typeof getOne;
+export type UpdateRoute = typeof update;
+export type RemoveRoute = typeof remove;

@@ -1,5 +1,5 @@
-import { BIZ_CODE } from "@/constants/code";
 import type { Context } from "hono";
+import { BIZ_CODE } from "../constants";
 
 /**
  * 成功响应的辅助函数

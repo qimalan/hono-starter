@@ -1,4 +1,4 @@
-import type { FilterConfig } from "@/common/helpers/querybuilder/buildQueryFilter";
+import type { FilterConfig } from "@/lib/helpers/buildQueryFilter";
 import { postTable } from "@/db/schema";
 import { arrayContains, eq } from "drizzle-orm";
 import type { PgColumn } from "drizzle-orm/pg-core";

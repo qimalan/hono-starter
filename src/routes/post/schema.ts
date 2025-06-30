@@ -1,12 +1,12 @@
-import { PaginationSchema } from "@/common/schema/pagination";
+import { postTable, statusEnum } from "@/db/schema";
+import { z } from "@hono/zod-openapi";
+import { postSortableKeys } from "./config";
 import {
 	createInsertSchema,
 	createSelectSchema,
 	createUpdateSchema,
-} from "@/common/schema/schemaFactory";
-import { postTable, statusEnum } from "@/db/schema";
-import { z } from "@hono/zod-openapi";
-import { postSortableKeys } from "./config";
+	PaginationSchema,
+} from "@/lib/schema";
 
 const PostFilterSchema = z.object({
 	status: z.enum(statusEnum.enumValues).optional(),
@@ -36,7 +36,7 @@ const PostFilterSchema = z.object({
 
 export type PostFilter = z.infer<typeof PostFilterSchema>;
 
-export const QueryPostListSchema = z.object({
+export const listSchema = z.object({
 	...PaginationSchema.shape,
 	...PostFilterSchema.shape,
 	sort: z.preprocess(
@@ -76,5 +76,13 @@ export const PostParamSchema = z.object({
 });
 
 export const PostSelectSchema = createSelectSchema(postTable);
-export const PostInsertSchema = createInsertSchema(postTable);
-export const PostUpdateSchema = createUpdateSchema(postTable);
+export const PostInsertSchema = createInsertSchema(postTable).omit({
+	updatedAt: true,
+	deletedAt: true,
+	createdAt: true,
+});
+export const PostUpdateSchema = createUpdateSchema(postTable).omit({
+	updatedAt: true,
+	deletedAt: true,
+	createdAt: true,
+});

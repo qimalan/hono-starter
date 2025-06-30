@@ -1,12 +1,13 @@
-import { BIZ_CODE } from "@/constants/code";
+import { BIZ_CODE } from "@/lib/constants";
 import { z } from "@hono/zod-openapi";
 
-export const createSuccessResponse = <T extends z.ZodSchema>(
+export const createOpenApiResponse = <T extends z.ZodSchema>(
 	description: string,
 	schema: T,
 ) => {
 	return {
 		200: {
+			//业务错误也是返回200。其他验证错误，数据库错误，内部错误已全局处理
 			description,
 			content: {
 				"application/json": {

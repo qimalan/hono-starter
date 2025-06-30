@@ -1,4 +1,4 @@
-import { OpenAPIHono } from "@hono/zod-openapi";
+import { OpenAPIHono, z } from "@hono/zod-openapi";
 import type { AppBindings } from "../types";
 import { csrf } from "hono/csrf";
 import { cors } from "hono/cors";
@@ -15,7 +15,7 @@ export function createRouter() {
 					{
 						code: 400,
 						message: "参数验证失败",
-						error: result.error,
+						error: z.prettifyError(result.error),
 					},
 					400,
 				);

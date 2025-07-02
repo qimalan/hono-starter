@@ -33,6 +33,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 
 export const getOne: AppRouteHandler<GetOneRoute> = async (c) => {
 	const { id } = c.req.valid("param");
+
 	const postItem = await db.query.postTable.findFirst({
 		where: eq(postTable.id, id),
 	});

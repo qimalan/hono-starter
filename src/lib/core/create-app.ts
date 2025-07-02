@@ -5,6 +5,8 @@ import { cors } from "hono/cors";
 import type { ContentfulStatusCode } from "hono/utils/http-status";
 import { HTTPException } from "hono/http-exception";
 import { DrizzleQueryError } from "drizzle-orm/errors";
+import { requestId } from "hono/request-id";
+import { pinoLogger } from "@/middlewares/pino-logger";
 
 export function createRouter() {
 	return new OpenAPIHono<AppBindings>({
@@ -29,6 +31,8 @@ export function createApp() {
 	app
 		.use(csrf())
 		.use(cors())
+		.use(requestId())
+		.use(pinoLogger())
 		.onError((err, c) => {
 			let statusCode: ContentfulStatusCode = 500;
 			let message = "Internal Server Error";

@@ -1,8 +1,8 @@
 {
-	"name": "hono-app",
+	"name": "hono-starter",
 	"version": "1.0.0",
 	"scripts": {
-		"dev": "bun run --hot src/index.ts",
+		"dev": "bun --hot src/index.ts",
 		"start": "bun --env-file=./.env.production src/index.ts",
 		"db:p": "bun drizzle-kit push",
 		"db:g": "bun drizzle-kit generate",

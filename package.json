@@ -4,9 +4,9 @@
 	"scripts": {
 		"dev": "bun --hot src/index.ts",
 		"start": "bun --env-file=./.env.production src/index.ts",
-		"db:p": "bun drizzle-kit push",
-		"db:g": "bun drizzle-kit generate",
-		"db:m": "bun drizzle-kit migrate",
+		"db:p": "bun run --bun drizzle-kit push",
+		"db:g": "bun run --bun drizzle-kit generate",
+		"db:m": "bun run --bun drizzle-kit migrate",
 		"db:s": "bun src/db/seed/index.ts"
 	},
 	"dependencies": {

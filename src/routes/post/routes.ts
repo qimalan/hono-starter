@@ -1,7 +1,7 @@
 import { createOpenApiResponse } from "@/lib/openapi/create-openapi-response";
 import { createRoute, z } from "@hono/zod-openapi";
 import {
-	listSchema,
+	PostListSchema,
 	PostInsertSchema,
 	PostSelectSchema,
 	PostUpdateSchema,
@@ -15,7 +15,7 @@ export const list = createRoute({
 	method: "get",
 	path: "/post",
 	request: {
-		query: listSchema,
+		query: PostListSchema,
 	},
 	responses: {
 		...createOpenApiResponse(

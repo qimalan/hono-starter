@@ -36,7 +36,7 @@ const PostFilterSchema = z.object({
 
 export type PostFilter = z.infer<typeof PostFilterSchema>;
 
-export const listSchema = z.object({
+export const PostListSchema = z.object({
 	...PaginationSchema.shape,
 	...PostFilterSchema.shape,
 	sort: z.preprocess(

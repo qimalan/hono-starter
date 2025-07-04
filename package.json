@@ -15,11 +15,11 @@
 		"drizzle-orm": "^0.44.2",
 		"drizzle-seed": "^0.3.1",
 		"drizzle-zod": "^0.8.2",
-		"hono": "^4.8.3",
+		"hono": "^4.8.4",
 		"hono-pino": "^0.9.1",
 		"pg": "^8.16.3",
 		"pino": "^9.7.0",
-		"zod": "^3.25.67"
+		"zod": "^3.25.73"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",

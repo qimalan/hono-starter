@@ -11,12 +11,6 @@ async function main() {
 					values: ["tech", "lifestyle", "coding", "drizzle", "orm"],
 					arraySize: 4,
 				}),
-				updatedAt: f.default({
-					defaultValue: null,
-				}),
-				deletedAt: f.default({
-					defaultValue: null,
-				}),
 			},
 		},
 	}));
